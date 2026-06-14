@@ -11,5 +11,10 @@
 ![src1版本预览图](https://i.loli.net/2021/10/09/GUBKTh95q8ikCL7.png)
 ## src2版本预览图
 ![src2版本预览图](https://i.loli.net/2021/11/24/3nqcXRiHswYSfUh.png)
+## 2022/xx/xx scr3版本更新
+### src3 风格：玻璃拟态 + 动态渐变背景，现代化左右分栏布局
+
+## src3版本预览图
+<!-- 待补充预览图 -->
 
 [![pbootcms GitHub stats](https://github-readme-stats.vercel.app/api?username=typzhiainia)](https://github.com/typzhiainia/pbootcms-background-login)
