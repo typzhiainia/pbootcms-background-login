@@ -12,4 +12,4 @@
 ## src2版本预览图
 ![src2版本预览图](https://i.loli.net/2021/11/24/3nqcXRiHswYSfUh.png)
 
-[![pbootcms GitHub stats](https://github-readme-stats.vercel.app/api?username=T-Y-P)](https://github.com/T-Y-P/pbootcms-background-login)
+[![pbootcms GitHub stats](https://github-readme-stats.vercel.app/api?username=typzhiainia)](https://github.com/typzhiainia/pbootcms-background-login)
