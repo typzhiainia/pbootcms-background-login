@@ -17,4 +17,11 @@
 ## src3版本预览图
 <!-- 待补充预览图 -->
 
+## src4版本
+### src4 风格：深色科技风 · 几何粒子背景 · 聚焦卡片
+### 特点：Canvas 动态粒子连线 + 卡片发光边框动画 + 极简深色 UI
+
+## src4版本预览图
+<!-- 待补充预览图 -->
+
 [![pbootcms GitHub stats](https://github-readme-stats.vercel.app/api?username=typzhiainia)](https://github.com/typzhiainia/pbootcms-background-login)

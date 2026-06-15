@@ -1,0 +1,348 @@
+/* ==========================================
+ *  PbootCMS 后台登录页 - src4 主题
+ *  风格：深色科技风 · 几何动效 · 聚焦卡片
+ * ========================================== */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg: #0b1121;
+    --card-bg: rgba(15, 23, 42, 0.85);
+    --accent: #06b6d4;
+    --accent2: #6366f1;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --border: rgba(255,255,255,0.06);
+    --input-bg: rgba(255,255,255,0.04);
+    --glow: rgba(6, 182, 212, 0.25);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+                 'Microsoft YaHei', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+a:hover { color: #22d3ee; }
+
+/* ---------- 几何动态背景 ---------- */
+.bg-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+#bgCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(6, 182, 212, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* ---------- 登录主体 ---------- */
+.login-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 420px;
+    padding: 44px 40px 36px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow:
+        0 0 0 1px rgba(6, 182, 212, 0.08),
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(99, 102, 241, 0.06);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    position: relative;
+    overflow: hidden;
+    animation: cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 卡片发光边框动画 */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 22px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.4;
+    animation: borderGlow 4s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+}
+
+/* ---------- 头部 ---------- */
+.card-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 8px 30px var(--glow);
+}
+
+.card-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.card-subtitle {
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+/* ---------- 问候语 ---------- */
+.greeting-bar {
+    margin-bottom: 24px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(6, 182, 212, 0.06);
+    border: 1px solid rgba(6, 182, 212, 0.12);
+    border-radius: 10px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- 表单字段 ---------- */
+.field {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.field-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.field-label svg {
+    opacity: 0.6;
+}
+
+.field input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.field input:focus {
+    border-color: rgba(6, 182, 212, 0.4);
+    background: rgba(6, 182, 212, 0.04);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.08);
+}
+
+.field input::placeholder {
+    color: rgba(148, 163, 184, 0.4);
+}
+
+.field-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    border-radius: 1px;
+}
+
+.field input:focus ~ .field-line {
+    width: calc(100% - 8px);
+    left: 4px;
+}
+
+/* ---------- 验证码 ---------- */
+.captcha-row {
+    display: flex;
+    gap: 10px;
+}
+
+.captcha-field {
+    flex: 1;
+}
+
+.captcha-img {
+    width: 110px;
+    height: 46px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.captcha-img:hover {
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+/* ---------- 提交按钮 ---------- */
+.btn-submit {
+    width: 100%;
+    height: 50px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(6, 182, 212, 0.35);
+}
+
+.btn-submit:hover::after {
+    opacity: 1;
+}
+
+.btn-submit span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-submit:active {
+    transform: scale(0.97);
+}
+
+/* ---------- 底部 ---------- */
+.card-footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(148, 163, 184, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.card-footer a {
+    color: rgba(148, 163, 184, 0.6);
+}
+
+.card-footer a:hover {
+    color: var(--accent);
+}
+
+.copy {
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 480px) {
+    .login-card {
+        width: 100%;
+        padding: 32px 24px 28px;
+        border-radius: 16px;
+    }
+
+    .login-wrapper {
+        padding: 12px;
+    }
+
+    .card-header h1 {
+        font-size: 20px;
+    }
+
+    .captcha-img {
+        width: 100px;
+    }
+}
